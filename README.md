@@ -9,5 +9,7 @@
 $ poetry install
 
 $ poetry run black .
+
+$ docker-compose up -d
 $ poetry run python -m unittest
 ```
