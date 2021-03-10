@@ -4,6 +4,7 @@ from email import message_from_string
 from email.header import decode_header, make_header
 from typing import List
 from base64 import urlsafe_b64decode
+from os.path import dirname
 
 IMAP_HOSTNAME = "localhost"
 IMAP_PORT = 143
@@ -41,6 +42,9 @@ def receive_email(
                 body = urlsafe_b64decode(part.get_payload().encode("ASCII")).decode(
                     "utf-8"
                 )
+
+            else:
+                pass
 
         emails.append(
             Email(
