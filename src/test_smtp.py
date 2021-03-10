@@ -1,5 +1,6 @@
 import unittest
 
+from src.email import Email
 from src.smtp import send_email
 from os.path import dirname
 
@@ -11,9 +12,13 @@ class TestSmtp(unittest.TestCase):
         send_email(
             user="user1@mail.example.com",
             password="xxxxxxxx",
-            from_address="user1@mail.example.com",
-            to_address="user2@mail.example.com",
-            subject="test subject",
-            body="test body",
-            file_paths=[f"{TEST_DATA_PATH}/textfile.txt"],
+            emails=[
+                Email(
+                    from_address="user1@mail.example.com",
+                    to_address="user2@mail.example.com",
+                    subject="test subject サブジェクト",
+                    body="test body\nボディ",
+                    file_paths=[f"{TEST_DATA_PATH}/textfile.txt"],
+                )
+            ],
         )
