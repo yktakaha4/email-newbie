@@ -28,7 +28,7 @@ def receive_email(
         mail = message_from_string(data[0][1].decode("utf-8"))
 
         from_address = mail["From"]
-        to_address = mail["To"]
+        to_addresses = mail["To"]
         subject = str(make_header(decode_header(mail["Subject"])))
         body = ""
 
@@ -49,7 +49,7 @@ def receive_email(
         emails.append(
             Email(
                 from_address=from_address,
-                to_address=to_address,
+                to_addresses=to_addresses.split(','),
                 subject=subject,
                 body=body,
                 file_paths=[],

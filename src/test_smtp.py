@@ -15,7 +15,7 @@ class TestSmtp(unittest.TestCase):
             emails=[
                 Email(
                     from_address="user1@mail.example.com",
-                    to_address="user2@mail.example.com",
+                    to_addresses=["user3@mail.example.com", "user4@mail.example.com"],
                     subject="test subject サブジェクト",
                     body="test body\nボディ",
                     file_paths=[f"{TEST_DATA_PATH}/textfile.txt"],

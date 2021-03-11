@@ -21,7 +21,7 @@ def send_email(user: str, password: str, emails: List[Email]):
         mime_multipart = MIMEMultipart()
         mime_multipart["Subject"] = email.subject
         mime_multipart["From"] = email.from_address
-        mime_multipart["To"] = email.to_address
+        mime_multipart["To"] = ','.join(email.to_addresses)
         mime_multipart["Date"] = formatdate()
         mime_multipart.attach(MIMEText(email.body))
 
@@ -34,10 +34,10 @@ def send_email(user: str, password: str, emails: List[Email]):
                 )
                 mime_multipart.attach(mime_application)
 
-        smtp.sendmail(
+        print(smtp.sendmail(
             from_addr=email.from_address,
-            to_addrs=email.to_address,
+            to_addrs=email.to_addresses,
             msg=mime_multipart.as_string(),
-        )
+        ))
 
     smtp.close()
